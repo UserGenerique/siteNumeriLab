@@ -3,49 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NumeriLab - Se former pour bâtir demain</title>
+    <title>NumeriLab - Formations numériques certifiantes à Bamako</title>
+    <meta name="description" content="NumeriLab — centre de formation numérique à Missabougou (Bamako). Formations certifiantes : Intelligence Artificielle, AutoCAD, ArcGIS, Excel, Power BI et Java (POO). Présentiel & 100% à distance, 40 000 FCFA.">
+    <meta name="theme-color" content="#7c3aed">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NumeriLab - Formations numériques certifiantes">
+    <meta property="og:description" content="Apprendre · Pratiquer · Construire. Formations certifiantes en IA, AutoCAD, ArcGIS, Excel, Power BI et Java à Bamako.">
+    <meta property="og:image" content="logo.jpeg">
+    <meta property="og:url" content="https://numeri-lab.net">
+
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
+    <link rel="apple-touch-icon" href="logo.jpeg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --brand-indigo: #3b2f9e;
+            --brand-purple: #7c3aed;
+            --brand-magenta: #c2188f;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
-        
+
+        /* Dégradé de marque (repris du logo : indigo → violet → magenta) */
+        .brand-gradient {
+            background: linear-gradient(135deg, #3b2f9e 0%, #7c3aed 50%, #c2188f 100%);
+        }
+
+        .brand-text-gradient {
+            background: linear-gradient(135deg, #7c3aed 0%, #c2188f 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .hero-gradient {
-            background: linear-gradient(135deg, #8b5cf6 0%, #7e22ce 100%);
+            background: linear-gradient(135deg, #3b2f9e 0%, #7c3aed 55%, #c2188f 100%);
         }
-        
+
+        /* Petit motif décoratif sur le hero */
+        .hero-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+        }
+
+        .course-card {
+            transition: all 0.3s ease;
+        }
+
         .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        
+
         .testimonial-card {
             background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
         }
-        
+
         .nav-link:hover::after {
             content: '';
             display: block;
             width: 24px;
             height: 3px;
-            background-color: #f59e0b;
+            background: linear-gradient(135deg, #7c3aed 0%, #c2188f 100%);
             margin: 4px auto 0;
+            border-radius: 9999px;
         }
-        
+
         .btn-primary {
             transition: all 0.3s ease;
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
         }
-        
-        /* Modal styles */
+
+        /* WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 900;
+            width: 58px;
+            height: 58px;
+            border-radius: 9999px;
+            background-color: #25d366;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transition: transform 0.25s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -53,52 +117,46 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.55);
             z-index: 1000;
             overflow-y: auto;
         }
-        
+
         .modal-content {
             background-color: white;
             margin: 5% auto;
             width: 90%;
-            max-width: 800px;
-            border-radius: 12px;
+            max-width: 820px;
+            border-radius: 14px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             animation: modalFadeIn 0.3s ease-out;
         }
-        
+
         @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .close-btn {
             position: absolute;
             top: 15px;
-            right: 15px;
-            font-size: 24px;
+            right: 18px;
+            font-size: 26px;
             color: #6b7280;
             cursor: pointer;
             transition: color 0.3s;
+            line-height: 1;
         }
-        
-        .close-btn:hover {
-            color: #374151;
-        }
-        
+
+        .close-btn:hover { color: #111827; }
+
+        /* Timeline du programme */
         .program-step {
             position: relative;
             padding-left: 30px;
             margin-bottom: 15px;
         }
-        
+
         .program-step::before {
             content: '';
             position: absolute;
@@ -107,9 +165,9 @@
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background-color: #8b5cf6;
+            background: linear-gradient(135deg, #7c3aed 0%, #c2188f 100%);
         }
-        
+
         .program-step::after {
             content: '';
             position: absolute;
@@ -119,189 +177,241 @@
             height: calc(100% - 18px);
             background-color: #e5e7eb;
         }
-        
-        .program-step:last-child::after {
-            display: none;
-        }
+
+        .program-step:last-child::after { display: none; }
+
+        .faq-answer { display: none; }
+        .faq-answer.open { display: block; }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
     <header class="sticky top-0 z-50 bg-white shadow-sm">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <img src="logo.jpeg" alt="Logo NumeriLab" class="w-full h-full object-cover" />
-                </div>
-                <span class="text-xl font-bold text-purple-800">NumeriLab</span>
-            </div>
-            
+            <a href="#home" class="flex items-center space-x-3">
+                <img src="logo.jpeg" alt="Logo NumeriLab" class="w-11 h-11 rounded-lg object-cover" />
+                <span class="leading-tight">
+                    <span class="block text-xl font-extrabold text-gray-900">Numeri<span class="brand-text-gradient">Lab</span></span>
+                    <span class="block text-[11px] tracking-wide text-gray-500 font-medium">Apprendre · Pratiquer · Construire</span>
+                </span>
+            </a>
+
             <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-gray-700 font-medium hover:text-blue-600">Accueil</a>
-                <a href="#courses" class="nav-link text-gray-700 font-medium hover:text-blue-600">Cours</a>
-                <a href="#about" class="nav-link text-gray-700 font-medium hover:text-blue-600">À propos</a>
-                <a href="#testimonials" class="nav-link text-gray-700 font-medium hover:text-blue-600">Témoignages</a>
-                <a href="#faq" class="nav-link text-gray-700 font-medium hover:text-blue-600">FAQ</a>
-                <a href="#contact" class="nav-link text-gray-700 font-medium hover:text-blue-600">Contact</a>
+                <a href="#home" class="nav-link text-gray-700 font-medium hover:text-purple-700">Accueil</a>
+                <a href="#courses" class="nav-link text-gray-700 font-medium hover:text-purple-700">Formations</a>
+                <a href="#about" class="nav-link text-gray-700 font-medium hover:text-purple-700">À propos</a>
+                <a href="#testimonials" class="nav-link text-gray-700 font-medium hover:text-purple-700">Témoignages</a>
+                <a href="#faq" class="nav-link text-gray-700 font-medium hover:text-purple-700">FAQ</a>
+                <a href="#contact" class="nav-link text-gray-700 font-medium hover:text-purple-700">Contact</a>
             </nav>
-            
+
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                <button id="menu-toggle" aria-label="Ouvrir le menu" class="text-gray-700 focus:outline-none">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
-        
+
         <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
             <div class="flex flex-col space-y-4">
-                <a href="#home" class="text-gray-700 font-medium hover:text-blue-600">Accueil</a>
-                <a href="#courses" class="text-gray-700 font-medium hover:text-blue-600">Cours</a>
-                <a href="#about" class="text-gray-700 font-medium hover:text-blue-600">À propos</a>
-                <a href="#testimonials" class="text-gray-700 font-medium hover:text-blue-600">Témoignages</a>
-                <a href="#faq" class="text-gray-700 font-medium hover:text-blue-600">FAQ</a>
-                <a href="#contact" class="text-gray-700 font-medium hover:text-blue-600">Contact</a>
+                <a href="#home" class="mobile-link text-gray-700 font-medium hover:text-purple-700">Accueil</a>
+                <a href="#courses" class="mobile-link text-gray-700 font-medium hover:text-purple-700">Formations</a>
+                <a href="#about" class="mobile-link text-gray-700 font-medium hover:text-purple-700">À propos</a>
+                <a href="#testimonials" class="mobile-link text-gray-700 font-medium hover:text-purple-700">Témoignages</a>
+                <a href="#faq" class="mobile-link text-gray-700 font-medium hover:text-purple-700">FAQ</a>
+                <a href="#contact" class="mobile-link text-gray-700 font-medium hover:text-purple-700">Contact</a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-gradient text-white py-20 md:py-32">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-6">Formez-vous aux métiers du numérique</h1>
-                <p class="text-xl md:text-2xl mb-8">Développez vos compétences avec nos formations professionnelles et accélérez votre carrière</p>
-                <i> <p class="text-2xl font-semibmb-10 mb-10">"Se former pour bâtir demain"</p></i>
-                <a href="#courses" class="btn-primary inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-lg text-lg">Découvrir les formations</a>
+    <section id="home" class="hero-gradient text-white">
+        <div class="hero-pattern">
+            <div class="container mx-auto px-4 py-20 md:py-28">
+                <div class="max-w-4xl mx-auto text-center">
+                    <span class="inline-block bg-white/15 border border-white/25 rounded-full px-4 py-1 text-sm font-medium mb-6">
+                        <i class="fas fa-award mr-2"></i>Formations 100% certifiantes
+                    </span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">Formez-vous aux métiers du numérique</h1>
+                    <p class="text-lg md:text-2xl text-white/90 mb-6">Développez des compétences concrètes grâce à une approche pratique : cas réels, mini-projets et exercices guidés.</p>
+                    <p class="text-xl md:text-2xl font-semibold italic mb-10">« Se former pour bâtir demain »</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#courses" class="btn-primary inline-block bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold py-3 px-8 rounded-lg text-lg">
+                            <i class="fas fa-graduation-cap mr-2"></i>Découvrir les formations
+                        </a>
+                        <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20des%20informations%20sur%20vos%20formations" target="_blank" rel="noopener" class="btn-primary inline-block bg-white/10 border-2 border-white hover:bg-white hover:text-purple-700 text-white font-bold py-3 px-8 rounded-lg text-lg">
+                            <i class="fab fa-whatsapp mr-2"></i>Nous écrire sur WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Session info band -->
+    <section class="bg-white border-b border-gray-100">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-calendar-day text-purple-600 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-500">Prochaine session</p>
+                    <p class="font-semibold text-gray-800 js-session-date">Sam. 04 juillet 2026</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-clock text-purple-600 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-500">Durée</p>
+                    <p class="font-semibold text-gray-800">5 semaines · 5 séances de 2h</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-map-marker-alt text-purple-600 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-500">Lieu</p>
+                    <p class="font-semibold text-gray-800">Missabougou, Bamako</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-laptop-house text-purple-600 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-500">Format</p>
+                    <p class="font-semibold text-gray-800">Présentiel & 100% à distance</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-users text-purple-600 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-500">Places limitées</p>
+                    <p class="font-semibold text-gray-800">12 maximum</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-tag text-purple-600 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-500">Tarif</p>
+                    <p class="font-semibold text-gray-800">40 000 FCFA</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Courses Section -->
-    <section id="courses" class="py-16 bg-white">
+    <section id="courses" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nos cours en ligne</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Des formations adaptées à votre rythme, avec un accompagnement personnalisé</p>
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nos formations certifiantes</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Six parcours pratiques pour monter en compétences, en présentiel à Bamako ou 100% à distance.</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Course 1 - Excel -->
-                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
-                    <div class="bg-blue-100 p-6 flex justify-center">
-                        <i class="fas fa-file-excel text-blue-600 text-5xl"></i>
+                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+                    <div class="bg-green-100 p-6 flex justify-center">
+                        <i class="fas fa-file-excel text-green-600 text-5xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">Excel - Maîtrise complète</h3>
-                        <p class="text-gray-600 mb-4">Apprenez à manipuler les données efficacement avec Excel, des bases aux fonctions avancées.</p>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Excel Professionnel</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Maîtrisez Excel pour organiser, analyser et présenter vos données comme un professionnel.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Débutant</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">40 heures</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">100% en ligne</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Certifiante</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">5 semaines</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">40 000 FCFA</span>
                         </div>
                         <div class="flex flex-col space-y-3">
-                            <a href="#" class="btn-primary bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg text-center">Webinaire gratuit</a>
-                            <button onclick="openModal('excel-modal')" class="btn-primary border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg text-center">Formation complète</button>
+                            <button onclick="openModal('excel-modal')" class="btn-primary bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg text-center">Programme détaillé</button>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20Excel%20Professionnel" target="_blank" rel="noopener" class="btn-primary border border-green-600 text-green-700 hover:bg-green-50 font-medium py-2 px-4 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Course 2 - IA -->
-                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
                     <div class="bg-purple-100 p-6 flex justify-center">
                         <i class="fas fa-robot text-purple-600 text-5xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">Initiation à l'IA</h3>
-                        <p class="text-gray-600 mb-4">Découvrez les fondamentaux de l'intelligence artificielle et ses applications concrètes.</p>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Intelligence Artificielle</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Comprenez l'IA, ses usages concrets et ses fondamentaux à travers une approche pratique et accessible.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Intermédiaire</span>
-                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">60 heures</span>
-                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Hybride</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Certifiante</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">5 semaines</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">40 000 FCFA</span>
                         </div>
                         <div class="flex flex-col space-y-3">
-                            <a href=" https://forms.gle/YyJe1b8mkbcgZekw8" class="btn-primary bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg text-center">Webinaire gratuit</a>
-                            <button onclick="openModal('ia-modal')" class="btn-primary border border-purple-600 text-purple-600 hover:bg-purple-50 font-medium py-2 px-4 rounded-lg text-center">Formation complète</button>
+                            <button onclick="openModal('ia-modal')" class="btn-primary bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg text-center">Programme détaillé</button>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20en%20Intelligence%20Artificielle" target="_blank" rel="noopener" class="btn-primary border border-purple-600 text-purple-700 hover:bg-purple-50 font-medium py-2 px-4 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire</a>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Course 3 - PowerBI -->
-                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
-                    <div class="bg-green-100 p-6 flex justify-center">
-                        <i class="fas fa-chart-line text-green-600 text-5xl"></i>
+
+                <!-- Course 3 - Power BI -->
+                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+                    <div class="bg-amber-100 p-6 flex justify-center">
+                        <i class="fas fa-chart-line text-amber-600 text-5xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">PowerBI - Data Visualisation</h3>
-                        <p class="text-gray-600 mb-4">Transformez vos données en tableaux de bord interactifs et percutants.</p>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Power BI</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Transformez vos données en décisions grâce à des tableaux de bord interactifs et percutants.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Intermédiaire</span>
-                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">50 heures</span>
-                            <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">100% en ligne</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full">Certifiante</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full">5 semaines</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full">40 000 FCFA</span>
                         </div>
                         <div class="flex flex-col space-y-3">
-                            <a href="https://forms.gle/XakKqMp2mL4qGKbV8" class="btn-primary bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg text-center">Webinaire gratuit</a>
-                            <button onclick="openModal('powerbi-modal')" class="btn-primary border border-green-600 text-green-600 hover:bg-green-50 font-medium py-2 px-4 rounded-lg text-center">Formation complète</button>
+                            <button onclick="openModal('powerbi-modal')" class="btn-primary bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg text-center">Programme détaillé</button>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20Power%20BI" target="_blank" rel="noopener" class="btn-primary border border-amber-500 text-amber-700 hover:bg-amber-50 font-medium py-2 px-4 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Course 4 - Java -->
-                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
                     <div class="bg-red-100 p-6 flex justify-center">
                         <i class="fab fa-java text-red-600 text-5xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">Java - Développement</h3>
-                        <p class="text-gray-600 mb-4">Maîtrisez l'un des langages de programmation les plus utilisés dans l'industrie.</p>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Java — POO</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Maîtrisez Java et la programmation orientée objet pour développer des applications complètes.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">Avancé</span>
-                            <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">80 heures</span>
-                            <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">Hybride</span>
+                            <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">Certifiante</span>
+                            <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">5 semaines</span>
+                            <span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full">40 000 FCFA</span>
                         </div>
                         <div class="flex flex-col space-y-3">
-                            <a href="#" class="btn-primary bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg text-center">Webinaire gratuit</a>
-                            <button onclick="openModal('java-modal')" class="btn-primary border border-red-600 text-red-600 hover:bg-red-50 font-medium py-2 px-4 rounded-lg text-center">Formation complète</button>
+                            <button onclick="openModal('java-modal')" class="btn-primary bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg text-center">Programme détaillé</button>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20Java%20POO" target="_blank" rel="noopener" class="btn-primary border border-red-600 text-red-700 hover:bg-red-50 font-medium py-2 px-4 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Course 5 - AutoCAD -->
-                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
-                    <div class="bg-yellow-100 p-6 flex justify-center">
-                        <i class="fas fa-drafting-compass text-yellow-600 text-5xl"></i>
+                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+                    <div class="bg-blue-100 p-6 flex justify-center">
+                        <i class="fas fa-drafting-compass text-blue-600 text-5xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">AutoCAD - Conception</h3>
-                        <p class="text-gray-600 mb-4">Apprenez à concevoir des plans techniques professionnels avec AutoCAD.</p>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">AutoCAD</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Concevez et réalisez des dessins techniques 2D et 3D précis et professionnels avec AutoCAD.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">Débutant</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">45 heures</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">100% en ligne</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Certifiante</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">5 semaines</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">40 000 FCFA</span>
                         </div>
                         <div class="flex flex-col space-y-3">
-                            <a href="https://forms.gle/YeE9bZc6UrACARDL9" class="btn-primary bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2 px-4 rounded-lg text-center">Webinaire gratuit</a>
-                            <button onclick="openModal('autocad-modal')" class="btn-primary border border-yellow-600 text-yellow-600 hover:bg-yellow-50 font-medium py-2 px-4 rounded-lg text-center">Formation complète</button>
+                            <button onclick="openModal('autocad-modal')" class="btn-primary bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg text-center">Programme détaillé</button>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20AutoCAD" target="_blank" rel="noopener" class="btn-primary border border-blue-600 text-blue-700 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Course 6 - ArcGIS -->
-                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                <div class="course-card bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
                     <div class="bg-indigo-100 p-6 flex justify-center">
                         <i class="fas fa-map-marked-alt text-indigo-600 text-5xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">ArcGIS - Systèmes d'information</h3>
-                        <p class="text-gray-600 mb-4">Maîtrisez les systèmes d'information géographique pour l'analyse spatiale.</p>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">ArcGIS</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Cartographie, analyse spatiale et SIG pour des décisions éclairées avec ArcGIS.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Intermédiaire</span>
-                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">55 heures</span>
-                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Hybride</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Certifiante</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">5 semaines</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">40 000 FCFA</span>
                         </div>
                         <div class="flex flex-col space-y-3">
-                            <a href="https://forms.gle/GrtTtB7vUJy7Mznr7" class="btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg text-center">Webinaire gratuit</a>
-                            <button onclick="openModal('arcgis-modal')" class="btn-primary border border-indigo-600 text-indigo-600 hover:bg-indigo-50 font-medium py-2 px-4 rounded-lg text-center">Formation complète</button>
+                            <button onclick="openModal('arcgis-modal')" class="btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg text-center">Programme détaillé</button>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20ArcGIS" target="_blank" rel="noopener" class="btn-primary border border-indigo-600 text-indigo-700 hover:bg-indigo-50 font-medium py-2 px-4 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire</a>
                         </div>
                     </div>
                 </div>
@@ -310,84 +420,84 @@
     </section>
 
     <!-- Why Choose Us Section -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
+            <div class="text-center mb-14">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Pourquoi choisir NumeriLab ?</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Notre approche pédagogique vous garantit une formation efficace et adaptée</p>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Une pédagogie tournée vers la pratique pour des compétences immédiatement utilisables.</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-sm text-center">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
-                        <i class="fas fa-chalkboard-teacher text-blue-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Pédagogie active</h3>
-                    <p class="text-gray-600">Apprentissage par projets concrets avec accompagnement personnalisé de nos formateurs experts.</p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-sm text-center">
-                    <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
-                        <i class="fas fa-laptop-code text-amber-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Flexibilité</h3>
-                    <p class="text-gray-600">Formations en ligne ou hybrides adaptées à votre emploi du temps et votre rythme d'apprentissage.</p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-sm text-center">
-                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
-                        <i class="fas fa-briefcase text-green-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Approche professionnelle</h3>
-                    <p class="text-gray-600">Contenu actualisé en permanence pour répondre aux besoins réels du marché du travail.</p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-sm text-center">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm text-center">
                     <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
-                        <i class="fas fa-users text-purple-600 text-2xl"></i>
+                        <i class="fas fa-laptop-code text-purple-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Communauté</h3>
-                    <p class="text-gray-600">Rejoignez notre réseau d'apprenants et profitez d'échanges et d'opportunités professionnelles.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Apprentissage pratique</h3>
+                    <p class="text-gray-600">Cas pratiques, mini-projets et exercices guidés : vous repartez avec des compétences concrètes.</p>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm text-center">
+                    <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-certificate text-amber-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Formations certifiantes</h3>
+                    <p class="text-gray-600">Chaque formation est sanctionnée par un certificat valorisant votre parcours.</p>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm text-center">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-laptop-house text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Présentiel & à distance</h3>
+                    <p class="text-gray-600">Suivez nos cours à Missabougou (Bamako) ou 100% à distance, selon votre disponibilité.</p>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm text-center">
+                    <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <i class="fas fa-users text-pink-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Suivi personnalisé</h3>
+                    <p class="text-gray-600">Des groupes limités à 12 places pour un accompagnement de proximité et de qualité.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
+    <section id="about" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center">
                 <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Notre mission</h2>
                     <p class="text-lg text-gray-600 mb-6">
-                        NumeriLab est un centre de formation numérique basé à Bamako, dédié à l'enseignement des compétences digitales essentielles pour l'emploi et l'entrepreneuriat.
+                        NumeriLab est un centre de formation numérique basé à Missabougou (Bamako, Mali), dédié à l'enseignement des compétences digitales essentielles pour l'emploi et l'entrepreneuriat.
                     </p>
                     <p class="text-lg text-gray-600 mb-6">
-                        Fondé en 2020 par une équipe de professionnels du numérique, notre objectif est de démocratiser l'accès aux formations technologiques de qualité en Afrique francophone.
+                        Notre approche est résolument pratique : cas concrets, mini-projets et exercices guidés pour que chaque apprenant reparte avec des compétences directement applicables.
                     </p>
                     <p class="text-lg text-gray-600 mb-8">
-                        Nous croyons que la maîtrise des outils numériques est un levier puissant pour l'autonomie professionnelle et le développement économique de notre région.
+                        Notre devise — <strong>Apprendre · Pratiquer · Construire</strong> — guide chacune de nos formations, en présentiel comme à distance.
                     </p>
-                    <a href="#contact" class="btn-primary inline-block bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg">Nous contacter</a>
+                    <a href="#contact" class="btn-primary inline-block brand-gradient text-white font-medium py-3 px-6 rounded-lg">Nous contacter</a>
                 </div>
-                
+
                 <div class="lg:w-1/2">
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-blue-100 rounded-xl p-6 flex flex-col items-center justify-center h-48">
-                            <i class="fas fa-graduation-cap text-blue-600 text-4xl mb-4"></i>
-                            <p class="text-blue-800 font-semibold text-center">500+ apprenants formés</p>
+                        <div class="bg-purple-100 rounded-xl p-6 flex flex-col items-center justify-center h-44">
+                            <i class="fas fa-graduation-cap text-purple-600 text-4xl mb-4"></i>
+                            <p class="text-purple-800 font-semibold text-center">6 formations certifiantes</p>
                         </div>
-                        <div class="bg-amber-100 rounded-xl p-6 flex flex-col items-center justify-center h-48">
+                        <div class="bg-amber-100 rounded-xl p-6 flex flex-col items-center justify-center h-44">
                             <i class="fas fa-certificate text-amber-600 text-4xl mb-4"></i>
-                            <p class="text-amber-800 font-semibold text-center">Certifications reconnues</p>
+                            <p class="text-amber-800 font-semibold text-center">Certification à la clé</p>
                         </div>
-                        <div class="bg-green-100 rounded-xl p-6 flex flex-col items-center justify-center h-48">
-                            <i class="fas fa-user-tie text-green-600 text-4xl mb-4"></i>
-                            <p class="text-green-800 font-semibold text-center">15 formateurs experts</p>
+                        <div class="bg-green-100 rounded-xl p-6 flex flex-col items-center justify-center h-44">
+                            <i class="fas fa-laptop-house text-green-600 text-4xl mb-4"></i>
+                            <p class="text-green-800 font-semibold text-center">Présentiel & 100% à distance</p>
                         </div>
-                        <div class="bg-purple-100 rounded-xl p-6 flex flex-col items-center justify-center h-48">
-                            <i class="fas fa-handshake text-purple-600 text-4xl mb-4"></i>
-                            <p class="text-purple-800 font-semibold text-center">20 entreprises partenaires</p>
+                        <div class="bg-pink-100 rounded-xl p-6 flex flex-col items-center justify-center h-44">
+                            <i class="fas fa-user-friends text-pink-600 text-4xl mb-4"></i>
+                            <p class="text-pink-800 font-semibold text-center">12 places maximum par session</p>
                         </div>
                     </div>
                 </div>
@@ -396,18 +506,18 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-gray-50">
+    <section id="testimonials" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
+            <div class="text-center mb-14">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Ils nous font confiance</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Découvrez ce que nos apprenants disent de leur expérience</p>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Découvrez ce que nos apprenants disent de leur expérience.</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="testimonial-card p-8 rounded-xl">
+
+            <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card p-8 rounded-xl shadow-sm">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-blue-600"></i>
+                        <div class="w-12 h-12 rounded-full bg-green-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-green-600"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-gray-800">Aminata D.</h4>
@@ -415,21 +525,17 @@
                         </div>
                     </div>
                     <p class="text-gray-600 italic mb-4">
-                        "La formation Excel m'a permis d'acquérir des compétences directement applicables dans mon travail. Les exercices pratiques étaient très concrets et le formateur très pédagogue."
+                        « La formation Excel m'a permis d'acquérir des compétences directement applicables dans mon travail. Les exercices pratiques étaient très concrets et le formateur très pédagogue. »
                     </p>
                     <div class="flex text-amber-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                 </div>
-                
-                <div class="testimonial-card p-8 rounded-xl">
+
+                <div class="testimonial-card p-8 rounded-xl shadow-sm">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-green-200 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-green-600"></i>
+                        <div class="w-12 h-12 rounded-full bg-red-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-red-600"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-gray-800">Moussa K.</h4>
@@ -437,36 +543,28 @@
                         </div>
                     </div>
                     <p class="text-gray-600 italic mb-4">
-                        "En tant qu'autodidacte, j'ai beaucoup apprécié la structure de la formation Java. Les projets m'ont permis de construire un portfolio solide qui m'a aidé à trouver un emploi rapidement."
+                        « En tant qu'autodidacte, j'ai beaucoup apprécié la structure de la formation Java. Le mini-projet final m'a permis de construire un portfolio solide. »
                     </p>
                     <div class="flex text-amber-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                     </div>
                 </div>
-                
-                <div class="testimonial-card p-8 rounded-xl">
+
+                <div class="testimonial-card p-8 rounded-xl shadow-sm">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-purple-200 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-purple-600"></i>
+                        <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-amber-600"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-gray-800">Fatoumata B.</h4>
-                            <p class="text-sm text-gray-500">Formation PowerBI</p>
+                            <p class="text-sm text-gray-500">Formation Power BI</p>
                         </div>
                     </div>
                     <p class="text-gray-600 italic mb-4">
-                        "Le format hybride était parfait pour moi. J'ai pu suivre les cours en ligne et bénéficier de séances en présentiel pour approfondir. Je recommande vivement NumeriLab !"
+                        « Le format hybride était parfait pour moi : cours à distance et séances en présentiel pour approfondir. Je recommande vivement NumeriLab ! »
                     </p>
                     <div class="flex text-amber-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                 </div>
             </div>
@@ -474,86 +572,84 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-16 bg-white">
+    <section id="faq" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
+            <div class="text-center mb-14">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Questions fréquentes</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Trouvez les réponses aux questions que vous vous posez</p>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Trouvez les réponses aux questions que vous vous posez.</p>
             </div>
-            
+
             <div class="max-w-3xl mx-auto">
                 <div class="mb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-lg px-6 py-4 transition-all duration-300">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-white hover:bg-gray-100 rounded-lg px-6 py-4 shadow-sm transition-all duration-300">
                         <span>Comment s'inscrire à une formation ?</span>
                         <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer px-6 py-4 text-gray-600 hidden">
-                        <p>Pour vous inscrire à une formation, vous pouvez soit :</p>
+                    <div class="faq-answer px-6 py-4 text-gray-600">
+                        <p>L'inscription est simple :</p>
                         <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li>Cliquer sur le bouton "Je m'inscris à la formation complète" sur la page du cours qui vous intéresse</li>
-                            <li>Nous contacter directement via le formulaire de contact ou par téléphone</li>
-                            <li>Participer d'abord à un webinaire gratuit pour découvrir la formation</li>
+                            <li>Cliquez sur le bouton « S'inscrire » d'une formation pour nous écrire directement sur WhatsApp au <strong>+223 76 54 75 91</strong></li>
+                            <li>Ou remplissez le <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" target="_blank" rel="noopener" class="text-purple-700 underline">formulaire d'inscription en ligne</a></li>
+                            <li>Ou contactez-nous via le formulaire de contact en bas de page</li>
                         </ul>
+                        <p class="mt-2">Les places sont limitées à 12 par session, pensez à réserver tôt.</p>
                     </div>
                 </div>
-                
+
                 <div class="mb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-lg px-6 py-4 transition-all duration-300">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-white hover:bg-gray-100 rounded-lg px-6 py-4 shadow-sm transition-all duration-300">
                         <span>Quels sont les prérequis pour suivre les formations ?</span>
                         <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer px-6 py-4 text-gray-600 hidden">
-                        <p>Les prérequis varient selon les formations :</p>
-                        <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li>Pour les formations débutantes (Excel, AutoCAD) : maîtrise de base de l'ordinateur</li>
-                            <li>Pour les formations intermédiaires (PowerBI, ArcGIS) : connaissances de base en analyse de données</li>
-                            <li>Pour les formations avancées (Java, IA) : logique algorithmique recommandée</li>
-                        </ul>
-                        <p class="mt-2">Chaque fiche formation précise les prérequis nécessaires.</p>
+                    <div class="faq-answer px-6 py-4 text-gray-600">
+                        <p>Nos formations sont accessibles aux <strong>débutants</strong>. Il suffit d'une maîtrise de base de l'ordinateur et de la motivation.</p>
+                        <p class="mt-2">Elles s'adressent aux débutants, étudiants, ingénieurs et techniciens souhaitant monter en compétences. Aucune connaissance préalable du logiciel n'est exigée.</p>
                     </div>
                 </div>
-                
+
                 <div class="mb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-lg px-6 py-4 transition-all duration-300">
-                        <span>Quelle est la différence entre formation en ligne et hybride ?</span>
+                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-white hover:bg-gray-100 rounded-lg px-6 py-4 shadow-sm transition-all duration-300">
+                        <span>Les cours sont-ils en présentiel ou à distance ?</span>
                         <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer px-6 py-4 text-gray-600 hidden">
-                        <p><strong>Formation 100% en ligne :</strong> Tous les cours et exercices sont accessibles sur notre plateforme, avec des sessions de mentorat en visioconférence.</p>
-                        <p class="mt-2"><strong>Formation hybride :</strong> Combinaison de cours en ligne et de séances en présentiel dans nos locaux à Bamako (environ 1 à 2 jours par mois).</p>
-                        <p class="mt-2">Le choix dépend de vos préférences et de votre disponibilité.</p>
+                    <div class="faq-answer px-6 py-4 text-gray-600">
+                        <p>Les deux ! Chaque formation est proposée <strong>en présentiel</strong> dans nos locaux à Missabougou (Bamako) et <strong>100% à distance</strong>.</p>
+                        <p class="mt-2">Le format se compose de 5 séances de 2h réparties sur 5 semaines. Vous choisissez la modalité qui vous convient le mieux.</p>
                     </div>
                 </div>
-                
+
                 <div class="mb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-lg px-6 py-4 transition-all duration-300">
-                        <span>Quels sont les modes de paiement acceptés ?</span>
+                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-white hover:bg-gray-100 rounded-lg px-6 py-4 shadow-sm transition-all duration-300">
+                        <span>Quel est le tarif et les modes de paiement ?</span>
                         <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer px-6 py-4 text-gray-600 hidden">
-                        <p>Nous acceptons plusieurs modes de paiement :</p>
+                    <div class="faq-answer px-6 py-4 text-gray-600">
+                        <p>Chaque formation certifiante est à <strong>40 000 FCFA</strong>. Nous acceptons :</p>
                         <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li>Paiement en ligne sécurisé par carte bancaire</li>
-                            <li>Mobile money (Orange Money, MTN Mobile Money)</li>
+                            <li>Mobile money (Orange Money, Moov Money)</li>
+                            <li>Espèces dans nos locaux à Missabougou</li>
                             <li>Virement bancaire</li>
-                            <li>Paiement en plusieurs fois (3 mensualités maximum)</li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="mb-6">
-                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-lg px-6 py-4 transition-all duration-300">
-                        <span>Obtenez-vous un certificat à la fin de la formation ?</span>
+                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-white hover:bg-gray-100 rounded-lg px-6 py-4 shadow-sm transition-all duration-300">
+                        <span>Obtient-on un certificat à la fin de la formation ?</span>
                         <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer px-6 py-4 text-gray-600 hidden">
-                        <p>Oui, tous nos apprenants reçoivent un certificat de formation reconnu par nos partenaires professionnels, à condition d'avoir :</p>
-                        <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li>Suivi au moins 80% des cours</li>
-                            <li>Réalisé tous les projets demandés</li>
-                            <li>Obtenu une note minimale de 70% à l'évaluation finale</li>
-                        </ul>
-                        <p class="mt-2">Le certificat est délivré sous format numérique et peut être partagé sur LinkedIn.</p>
+                    <div class="faq-answer px-6 py-4 text-gray-600">
+                        <p>Oui. Toutes nos formations sont <strong>certifiantes</strong>. À l'issue du parcours et après réalisation des mini-projets, vous recevez un certificat NumeriLab attestant de vos compétences.</p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <button class="faq-question flex justify-between items-center w-full text-left font-medium text-gray-800 bg-white hover:bg-gray-100 rounded-lg px-6 py-4 shadow-sm transition-all duration-300">
+                        <span>Quand commence la prochaine session ?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 text-gray-600">
+                        <p>La prochaine session débute le <strong class="js-session-date">samedi 04 juillet 2026</strong>. Les places étant limitées à 12 par formation, nous vous conseillons de vous inscrire au plus tôt.</p>
                     </div>
                 </div>
             </div>
@@ -561,130 +657,117 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-50">
+    <section id="contact" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
+            <div class="text-center mb-14">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contactez-nous</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Une question ? Un projet ? Notre équipe est à votre écoute</p>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Une question ? Un projet ? Notre équipe est à votre écoute.</p>
             </div>
-            
+
             <div class="flex flex-col lg:flex-row gap-12">
                 <div class="lg:w-1/2">
-                    <form 
-  id="contact-form"
-  action="https://formsubmit.co/numerilab223@gmail.com" 
-  method="POST" 
-  target="hidden_iframe" class="bg-white p-8 rounded-xl shadow-sm"
->
-                   <!-- <form id="contact-form" class="bg-white p-8 rounded-xl shadow-sm"> --> 
+                    <form id="contact-form" action="https://formsubmit.co/numerilab223@gmail.com" method="POST" target="hidden_iframe" class="bg-gray-50 p-8 rounded-xl shadow-sm">
                         <div id="form-alert" class="hidden mb-6 p-4 rounded-lg text-sm font-medium" role="alert"></div>
-                      
-                        <div class="mb-6">
-                          <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet</label>
-                          <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                      
-                        <div class="mb-6">
-                          <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                          <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        </div>
-                      
-                        <div class="mb-6">
-                          <label for="subject" class="block text-gray-700 font-medium mb-2">Sujet</label>
-                          <select id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                            <option value="">Sélectionnez un sujet</option>
-                            <option value="formation">Demande d'information sur une formation</option>
-                            <option value="webinaire">Inscription à un webinaire gratuit</option>
-                            <option value="partenariat">Demande de partenariat</option>
-                            <option value="autre">Autre demande</option>
-                          </select>
-                        </div>
-                      
-                        <div class="mb-6">
-                          <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                          <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
-                        </div>
-                      
-                        <button type="submit" class="btn-primary w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">Envoyer le message</button>
-                      </form>
 
-                      <iframe name="hidden_iframe" style="display:none;"></iframe>
-                      
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Sujet</label>
+                            <select id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition">
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="formation">Demande d'information sur une formation</option>
+                                <option value="inscription">Inscription à une formation</option>
+                                <option value="partenariat">Demande de partenariat</option>
+                                <option value="autre">Autre demande</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary w-full brand-gradient text-white font-medium py-3 px-6 rounded-lg">Envoyer le message</button>
+                    </form>
+
+                    <iframe name="hidden_iframe" style="display:none;"></iframe>
                 </div>
-                
+
                 <div class="lg:w-1/2">
-                    <div class="bg-white p-8 rounded-xl shadow-sm h-full">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm h-full">
                         <h3 class="text-xl font-bold text-gray-800 mb-6">Nos coordonnées</h3>
-                        
+
                         <div class="space-y-6">
                             <div class="flex items-start">
-                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-map-marker-alt text-purple-600"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-gray-800">Adresse</h4>
-                                    <p class="text-gray-600">Rue 123, Quartier du Fleuve<br>Bamako, Mali</p>
+                                    <p class="text-gray-600">NumeriLab — Missabougou<br>Bamako, Mali</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
                                 <div class="bg-green-100 p-3 rounded-lg mr-4">
                                     <i class="fas fa-envelope text-green-600"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-gray-800">Email</h4>
-                                    <p class="text-gray-600">contact@numerilab.ml</p>
+                                    <p class="text-gray-600">numerilab223@gmail.com</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
-                                <div class="bg-purple-100 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-phone-alt text-purple-600"></i>
+                                <div class="bg-amber-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-phone-alt text-amber-600"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-gray-800">Téléphone</h4>
-                                    <p class="text-gray-600">+223 70 12 34 56</p>
+                                    <p class="text-gray-600">+223 76 54 75 91</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
-                                <div class="bg-amber-100 p-3 rounded-lg mr-4">
-                                    <i class="fab fa-whatsapp text-amber-600"></i>
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i class="fab fa-whatsapp text-green-600"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-medium text-gray-800">WhatsApp</h4>
-                                    <p class="text-gray-600">+223 70 12 34 56</p>
+                                    <p class="text-gray-600"><a href="https://wa.me/22376547591" target="_blank" rel="noopener" class="hover:text-green-700">+223 76 54 75 91</a></p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
-                                <div class="bg-red-100 p-3 rounded-lg mr-4">
-                                    <i class="far fa-clock text-red-600"></i>
+                                <div class="bg-pink-100 p-3 rounded-lg mr-4">
+                                    <i class="far fa-clock text-pink-600"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-medium text-gray-800">Horaires d'ouverture</h4>
+                                    <h4 class="font-medium text-gray-800">Horaires</h4>
                                     <p class="text-gray-600">Lundi - Vendredi : 8h - 18h<br>Samedi : 9h - 13h</p>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="mt-8">
                             <h4 class="font-medium text-gray-800 mb-4">Retrouvez-nous sur les réseaux sociaux</h4>
                             <div class="flex space-x-4">
-                                <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://www.instagram.com/numeri_lab?igsh=MWVrMzZoYW9kYzBldg%3D%3D&utm_source=qr" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition">
+                                <a href="https://www.instagram.com/numeri_lab?igsh=MWVrMzZoYW9kYzBldg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition" aria-label="Instagram">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/company/numerilab25/" class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800 transition">
+                                <a href="https://www.linkedin.com/company/numerilab25/" target="_blank" rel="noopener" class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800 transition" aria-label="LinkedIn">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="#" class="bg-gray-800 text-white p-3 rounded-full hover:bg-gray-900 transition">
-                                    <i class="fab fa-youtube"></i>
+                                <a href="https://wa.me/22376547591" target="_blank" rel="noopener" class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition" aria-label="WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
                                 </a>
                             </div>
                         </div>
@@ -695,120 +778,69 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
+    <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-laptop-code text-white text-xl"></i>
-                        </div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="logo.jpeg" alt="Logo NumeriLab" class="w-10 h-10 rounded-lg object-cover" />
                         <span class="text-xl font-bold">NumeriLab</span>
                     </div>
-                    
-                   
-                    <p class="text-gray-400">Centre de formation numérique à Bamako, Mali.</p>
+                    <p class="text-gray-400">Centre de formation numérique à Missabougou, Bamako (Mali).</p>
+                    <p class="text-gray-400 mt-2 italic">Apprendre · Pratiquer · Construire</p>
                 </div>
-                
+
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Formations</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Excel</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Intelligence Artificielle</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">PowerBI</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Java</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">AutoCAD</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">ArcGIS</a></li>
+                        <li><button onclick="openModal('excel-modal')" class="text-gray-400 hover:text-white transition">Excel Professionnel</button></li>
+                        <li><button onclick="openModal('ia-modal')" class="text-gray-400 hover:text-white transition">Intelligence Artificielle</button></li>
+                        <li><button onclick="openModal('powerbi-modal')" class="text-gray-400 hover:text-white transition">Power BI</button></li>
+                        <li><button onclick="openModal('java-modal')" class="text-gray-400 hover:text-white transition">Java — POO</button></li>
+                        <li><button onclick="openModal('autocad-modal')" class="text-gray-400 hover:text-white transition">AutoCAD</button></li>
+                        <li><button onclick="openModal('arcgis-modal')" class="text-gray-400 hover:text-white transition">ArcGIS</button></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Liens utiles</h3>
                     <ul class="space-y-2">
                         <li><a href="#home" class="text-gray-400 hover:text-white transition">Accueil</a></li>
-                        <li><a href="#courses" class="text-gray-400 hover:text-white transition">Nos cours</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-white transition">Nos formations</a></li>
                         <li><a href="#about" class="text-gray-400 hover:text-white transition">À propos</a></li>
                         <li><a href="#testimonials" class="text-gray-400 hover:text-white transition">Témoignages</a></li>
                         <li><a href="#faq" class="text-gray-400 hover:text-white transition">FAQ</a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
-                    <p class="text-gray-400 mb-4">Abonnez-vous pour recevoir nos actualités et offres spéciales.</p>
-                    <form class="flex">
-                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+                    <h3 class="text-lg font-semibold mb-4">Restons en contact</h3>
+                    <p class="text-gray-400 mb-4">Une question ? Écrivez-nous directement sur WhatsApp.</p>
+                    <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab" target="_blank" rel="noopener" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-medium px-5 py-2 rounded-lg transition">
+                        <i class="fab fa-whatsapp mr-2"></i>+223 76 54 75 91
+                    </a>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 NumeriLab. Tous droits réservés.</p>
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2026 NumeriLab. Tous droits réservés.</p>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition">Mentions légales</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">Conditions générales</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition">À propos</a>
+                    <a href="#faq" class="text-gray-400 hover:text-white transition">FAQ</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
                 </div>
             </div>
         </div>
-
-        <script>
-
-const form = document.getElementById('contact-form');
-  const alertBox = document.getElementById('form-alert');
-  const iframe = document.querySelector('iframe[name="hidden_iframe"]');
-
-  iframe.onload = function () {
-    // La réponse de Google Apps Script est chargée dans l'iframe
-    alertBox.style.display = 'block';
-    alertBox.style.color = 'green';
-    alertBox.textContent = "Merci, votre message a bien été envoyé !";
-
-    // On peut aussi réinitialiser le formulaire
-    form.reset();
-  };
-
-
-   
-
-
-
-            function openModal(modalId) {
-              const modal = document.getElementById(modalId);
-              if (modal) {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // empêche le scroll du fond
-              }
-            }
-          
-            function closeModal(modalId) {
-              const modal = document.getElementById(modalId);
-              if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = ''; // rétablit le scroll
-              }
-            }
-          
-            // Optionnel : Fermer le modal si on clique en dehors de la boîte de contenu
-            window.addEventListener('click', function(event) {
-              const modals = document.querySelectorAll('.modal');
-              modals.forEach(modal => {
-                if (event.target === modal) {
-                  modal.style.display = 'none';
-                  document.body.style.overflow = '';
-                }
-              });
-            });
-          </script>
-          
-          
     </footer>
 
-    <!-- Modals for Course Details -->
+    <!-- WhatsApp flottant -->
+    <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20des%20informations%20sur%20vos%20formations" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contacter NumeriLab sur WhatsApp">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- ============ MODALS ============ -->
+
     <!-- Excel Modal -->
     <div id="excel-modal" class="modal">
         <div class="modal-content relative">
@@ -816,114 +848,68 @@ const form = document.getElementById('contact-form');
             <div class="p-8">
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="md:w-1/3">
-                        <div class="bg-blue-100 p-8 rounded-lg flex justify-center mb-6">
-                            <i class="fas fa-file-excel text-blue-600 text-8xl"></i>
+                        <div class="bg-green-100 p-8 rounded-lg flex justify-center mb-6">
+                            <i class="fas fa-file-excel text-green-600 text-8xl"></i>
                         </div>
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                             <h3 class="text-xl font-bold text-gray-800 mb-4">Informations clés</h3>
-                            <ul class="space-y-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-clock text-blue-600 mt-1 mr-3"></i>
-                                    <span><strong>Durée:</strong> 40 heures (4 semaines)</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-user-graduate text-blue-600 mt-1 mr-3"></i>
-                                    <span><strong>Niveau:</strong> Débutant à Intermédiaire</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-laptop text-blue-600 mt-1 mr-3"></i>
-                                    <span><strong>Format:</strong> 100% en ligne</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-certificate text-blue-600 mt-1 mr-3"></i>
-                                    <span><strong>Certification:</strong> Oui, avec projet final</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-money-bill-wave text-blue-600 mt-1 mr-3"></i>
-                                    <span><strong>Prix:</strong> 150 000 FCFA</span>
-                                </li>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-calendar-day text-green-600 mt-1 mr-3"></i><span><strong>Début :</strong> <span class="js-session-date">Samedi 04 juillet 2026</span></span></li>
+                                <li class="flex items-start"><i class="fas fa-clock text-green-600 mt-1 mr-3"></i><span><strong>Durée :</strong> 5 semaines · 5 séances de 2h</span></li>
+                                <li class="flex items-start"><i class="fas fa-laptop-house text-green-600 mt-1 mr-3"></i><span><strong>Format :</strong> Présentiel & 100% à distance</span></li>
+                                <li class="flex items-start"><i class="fas fa-map-marker-alt text-green-600 mt-1 mr-3"></i><span><strong>Lieu :</strong> Missabougou, Bamako</span></li>
+                                <li class="flex items-start"><i class="fas fa-users text-green-600 mt-1 mr-3"></i><span><strong>Places :</strong> 12 maximum</span></li>
+                                <li class="flex items-start"><i class="fas fa-certificate text-green-600 mt-1 mr-3"></i><span><strong>Certification :</strong> Formation certifiante</span></li>
+                                <li class="flex items-start"><i class="fas fa-tag text-green-600 mt-1 mr-3"></i><span><strong>Tarif :</strong> 40 000 FCFA</span></li>
                             </ul>
-                            <br>
-                            <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" class="btn-primary mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg text-center">S'inscrire</a>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20Excel%20Professionnel" target="_blank" rel="noopener" class="btn-primary mt-6 w-full inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire sur WhatsApp</a>
+                            <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" target="_blank" rel="noopener" class="mt-3 w-full inline-block border border-green-600 text-green-700 hover:bg-green-50 font-medium py-3 px-6 rounded-lg text-center">Formulaire d'inscription</a>
                         </div>
                     </div>
                     <div class="md:w-2/3">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Excel - Maîtrise complète</h2>
-                        <p class="text-lg text-gray-600 mb-6">Cette formation intensive vous permettra de maîtriser Excel de A à Z, depuis les bases jusqu'aux fonctionnalités avancées utilisées par les professionnels.</p>
-                        
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Excel Professionnel</h2>
+                        <p class="text-lg text-gray-600 mb-6">Maîtrisez Excel pour organiser, analyser et présenter vos données comme un professionnel, à travers une approche pratique et concrète.</p>
+
                         <div class="mb-8">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Ce que vous apprendrez</h3>
-                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Fonctions essentielles et formules avancées</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Tableaux croisés dynamiques et analyse de données</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Macros et automatisation des tâches</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Création de dashboards professionnels</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Manipulation des données avec Power Query</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Visualisation avancée avec Power Pivot</span>
-                                </li>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">À la fin de la formation, vous serez capable de :</h3>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Organiser et gérer efficacement vos données</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Créer des tableaux clairs et professionnels</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Construire des graphiques et visualisations percutantes</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Analyser et filtrer vos données pour mieux décider</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Réaliser un mini-projet Excel concret et valorisable</span></li>
                             </ul>
                         </div>
-                        
+
                         <div class="mb-8">
                             <h3 class="text-xl font-bold text-gray-800 mb-4">Programme de la formation</h3>
                             <div class="space-y-4">
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 1 : Fondamentaux d'Excel</h4>
-                                    <p class="text-gray-600">Interface, formules de base, mise en forme conditionnelle, gestion des données</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 1 : Introduction et prise en main d'Excel</h4>
+                                    <p class="text-gray-600">Cas d'usage d'Excel, interface (ruban, feuilles, lignes, colonnes), saisie des types de données (texte, nombres, dates), sauvegarde et organisation des fichiers.</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 2 : Fonctions avancées</h4>
-                                    <p class="text-gray-600">Fonctions imbriquées, recherche V/H, index, matrices, validation des données</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 2 : Manipulation des données</h4>
+                                    <p class="text-gray-600">Copier-coller et remplissage automatique, colonnes calculées (somme, multiplication…), insertion/organisation des lignes et colonnes, tri, filtre et validation des données.</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 3 : Analyse de données</h4>
-                                    <p class="text-gray-600">Tableaux croisés dynamiques, Power Query, consolidation des données</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 3 : Mise en forme des tableaux</h4>
+                                    <p class="text-gray-600">Taille, alignement et police des cellules, mise en forme claire et lisible, mise en forme conditionnelle simple.</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 4 : Automatisation et visualisation</h4>
-                                    <p class="text-gray-600">Macros, Power Pivot, création de dashboards interactifs</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 4 : Initiation aux graphiques</h4>
+                                    <p class="text-gray-600">Graphiques simples (barres, courbes, secteurs), choix du bon type de graphique, mise en forme et personnalisation, visualisation pour la prise de décision.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 5 : Bonnes pratiques et projet final</h4>
+                                    <p class="text-gray-600">Raccourcis clavier essentiels, figer les volets et gérer l'affichage, formats de données, bases du tableau croisé dynamique et mini-projet.</p>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div>
                             <h3 class="text-xl font-bold text-gray-800 mb-4">À qui s'adresse cette formation ?</h3>
-                            <p class="text-gray-600 mb-4">Cette formation est idéale pour :</p>
-                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-user-tie text-blue-600 mt-1 mr-2"></i>
-                                    <span>Professionnels souhaitant améliorer leur productivité</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-graduation-cap text-blue-600 mt-1 mr-2"></i>
-                                    <span>Étudiants en gestion, finance ou analyse de données</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chart-line text-blue-600 mt-1 mr-2"></i>
-                                    <span>Analystes débutants voulant maîtriser Excel</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-briefcase text-blue-600 mt-1 mr-2"></i>
-                                    <span>Entrepreneurs gérant leurs propres données</span>
-                                </li>
-                            </ul>
+                            <p class="text-gray-600">Débutants, étudiants, ingénieurs et techniciens souhaitant gagner en efficacité avec Excel.</p>
                         </div>
                     </div>
                 </div>
@@ -941,111 +927,65 @@ const form = document.getElementById('contact-form');
                         <div class="bg-purple-100 p-8 rounded-lg flex justify-center mb-6">
                             <i class="fas fa-robot text-purple-600 text-8xl"></i>
                         </div>
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                             <h3 class="text-xl font-bold text-gray-800 mb-4">Informations clés</h3>
-                            <ul class="space-y-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-clock text-purple-600 mt-1 mr-3"></i>
-                                    <span><strong>Durée:</strong> 60 heures (6 semaines)</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-user-graduate text-purple-600 mt-1 mr-3"></i>
-                                    <span><strong>Niveau:</strong> Intermédiaire</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-laptop text-purple-600 mt-1 mr-3"></i>
-                                    <span><strong>Format:</strong> Hybride (en ligne + présentiel)</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-certificate text-purple-600 mt-1 mr-3"></i>
-                                    <span><strong>Certification:</strong> Oui, avec projet final</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-money-bill-wave text-purple-600 mt-1 mr-3"></i>
-                                    <span><strong>Prix:</strong> 250 000 FCFA</span>
-                                </li>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-calendar-day text-purple-600 mt-1 mr-3"></i><span><strong>Début :</strong> <span class="js-session-date">Samedi 04 juillet 2026</span></span></li>
+                                <li class="flex items-start"><i class="fas fa-clock text-purple-600 mt-1 mr-3"></i><span><strong>Durée :</strong> 5 semaines · 5 séances de 2h</span></li>
+                                <li class="flex items-start"><i class="fas fa-laptop-house text-purple-600 mt-1 mr-3"></i><span><strong>Format :</strong> Présentiel & 100% à distance</span></li>
+                                <li class="flex items-start"><i class="fas fa-map-marker-alt text-purple-600 mt-1 mr-3"></i><span><strong>Lieu :</strong> Missabougou, Bamako</span></li>
+                                <li class="flex items-start"><i class="fas fa-users text-purple-600 mt-1 mr-3"></i><span><strong>Places :</strong> 12 maximum</span></li>
+                                <li class="flex items-start"><i class="fas fa-certificate text-purple-600 mt-1 mr-3"></i><span><strong>Certification :</strong> Formation certifiante</span></li>
+                                <li class="flex items-start"><i class="fas fa-tag text-purple-600 mt-1 mr-3"></i><span><strong>Tarif :</strong> 40 000 FCFA</span></li>
                             </ul>
-                            <br>
-                            <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" class="btn-primary mt-6 w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg text-center">S'inscrire</a>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20en%20Intelligence%20Artificielle" target="_blank" rel="noopener" class="btn-primary mt-6 w-full inline-block bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire sur WhatsApp</a>
+                            <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" target="_blank" rel="noopener" class="mt-3 w-full inline-block border border-purple-600 text-purple-700 hover:bg-purple-50 font-medium py-3 px-6 rounded-lg text-center">Formulaire d'inscription</a>
+                            <a href="https://forms.gle/YyJe1b8mkbcgZekw8" target="_blank" rel="noopener" class="block text-center text-sm text-purple-700 hover:underline mt-3">Participer à un webinaire gratuit →</a>
                         </div>
                     </div>
                     <div class="md:w-2/3">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Initiation à l'Intelligence Artificielle</h2>
-                        <p class="text-lg text-gray-600 mb-6">Découvrez les concepts fondamentaux de l'IA et apprenez à mettre en œuvre des solutions basiques d'apprentissage automatique et de traitement du langage naturel.</p>
-                        
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Formation en Intelligence Artificielle</h2>
+                        <p class="text-lg text-gray-600 mb-6">Comprenez l'IA, ses usages concrets et ses fondamentaux à travers une approche pratique et accessible.</p>
+
                         <div class="mb-8">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Ce que vous apprendrez</h3>
-                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Fondamentaux de l'IA et du Machine Learning</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Algorithmes de classification et régression</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Traitement du langage naturel (NLP) basique</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Vision par ordinateur avec OpenCV</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Utilisation de TensorFlow et Keras</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Éthique et limites de l'IA</span>
-                                </li>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">À la fin de la formation, vous serez capable de :</h3>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Comprendre les grands concepts de l'IA</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Découvrir les applications concrètes de l'IA</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Manipuler des notions de machine learning</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Comprendre les bases du NLP et du deep learning</span></li>
                             </ul>
                         </div>
-                        
+
                         <div class="mb-8">
                             <h3 class="text-xl font-bold text-gray-800 mb-4">Programme de la formation</h3>
                             <div class="space-y-4">
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 1-2 : Introduction à l'IA</h4>
-                                    <p class="text-gray-600">Histoire de l'IA, concepts fondamentaux, Python pour l'IA, librairies scientifiques</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 1 : Initiation à l'intelligence artificielle</h4>
+                                    <p class="text-gray-600">Comprendre ce qu'est l'IA, son évolution et ses grandes révolutions, ses domaines d'application, et le concept de machine learning (apprentissage supervisé).</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 3-4 : Machine Learning</h4>
-                                    <p class="text-gray-600">Apprentissage supervisé et non supervisé, évaluation des modèles, cas pratiques</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 2 : Classification supervisée</h4>
+                                    <p class="text-gray-600">Notion de classification supervisée, principales méthodes, évaluation d'un classifieur et application à un jeu de données.</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 5 : NLP et Vision</h4>
-                                    <p class="text-gray-600">Traitement du texte, reconnaissance d'images, OpenCV, projets concrets</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 3 : Apprentissage non supervisé – Clustering</h4>
+                                    <p class="text-gray-600">Concept d'apprentissage non supervisé, clustering, K-means et cas pratique.</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 6 : Projet final</h4>
-                                    <p class="text-gray-600">Mise en pratique complète avec un projet personnel encadré</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 4 : Introduction au Deep Learning</h4>
+                                    <p class="text-gray-600">Le Deep Learning et ses applications, architecture d'un réseau de neurones, distinction CNN/RNN/GNN, classification d'image avec un CNN.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 5 : Introduction au NLP</h4>
+                                    <p class="text-gray-600">Comprendre le NLP et son importance, applications concrètes (traduction, résumé, sentiment), notions de base (tokenisation, word embeddings) et grands types de tâches NLP.</p>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div>
                             <h3 class="text-xl font-bold text-gray-800 mb-4">À qui s'adresse cette formation ?</h3>
-                            <p class="text-gray-600 mb-4">Cette formation est idéale pour :</p>
-                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-code text-purple-600 mt-1 mr-2"></i>
-                                    <span>Développeurs curieux des technologies IA</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chart-bar text-purple-600 mt-1 mr-2"></i>
-                                    <span>Data analysts souhaitant évoluer</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-user-tie text-purple-600 mt-1 mr-2"></i>
-                                    <span>Managers et chefs de projet tech</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-graduation-cap text-purple-600 mt-1 mr-2"></i>
-                                    <span>Étudiants en informatique et mathématiques</span>
-                                </li>
-                            </ul>
+                            <p class="text-gray-600">Débutants, étudiants et professionnels curieux de l'IA.</p>
                         </div>
                     </div>
                 </div>
@@ -1053,125 +993,76 @@ const form = document.getElementById('contact-form');
         </div>
     </div>
 
-    <!-- PowerBI Modal -->
+    <!-- Power BI Modal -->
     <div id="powerbi-modal" class="modal">
         <div class="modal-content relative">
             <span class="close-btn" onclick="closeModal('powerbi-modal')">&times;</span>
             <div class="p-8">
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="md:w-1/3">
-                        <div class="bg-green-100 p-8 rounded-lg flex justify-center mb-6">
-                            <i class="fas fa-chart-line text-green-600 text-8xl"></i>
+                        <div class="bg-amber-100 p-8 rounded-lg flex justify-center mb-6">
+                            <i class="fas fa-chart-line text-amber-600 text-8xl"></i>
                         </div>
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                             <h3 class="text-xl font-bold text-gray-800 mb-4">Informations clés</h3>
-                            <ul class="space-y-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-clock text-green-600 mt-1 mr-3"></i>
-                                    <span><strong>Durée:</strong> 50 heures (5 semaines)</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-user-graduate text-green-600 mt-1 mr-3"></i>
-                                    <span><strong>Niveau:</strong> Intermédiaire</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-laptop text-green-600 mt-1 mr-3"></i>
-                                    <span><strong>Format:</strong> 100% en ligne</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-certificate text-green-600 mt-1 mr-3"></i>
-                                    <span><strong>Certification:</strong> Oui, avec projet final</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-money-bill-wave text-green-600 mt-1 mr-3"></i>
-                                    <span><strong>Prix:</strong> 200 000 FCFA</span>
-                                </li>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-calendar-day text-amber-600 mt-1 mr-3"></i><span><strong>Début :</strong> <span class="js-session-date">Samedi 04 juillet 2026</span></span></li>
+                                <li class="flex items-start"><i class="fas fa-clock text-amber-600 mt-1 mr-3"></i><span><strong>Durée :</strong> 5 semaines · 5 séances de 2h</span></li>
+                                <li class="flex items-start"><i class="fas fa-laptop-house text-amber-600 mt-1 mr-3"></i><span><strong>Format :</strong> Présentiel & 100% à distance</span></li>
+                                <li class="flex items-start"><i class="fas fa-map-marker-alt text-amber-600 mt-1 mr-3"></i><span><strong>Lieu :</strong> Missabougou, Bamako</span></li>
+                                <li class="flex items-start"><i class="fas fa-users text-amber-600 mt-1 mr-3"></i><span><strong>Places :</strong> 12 maximum</span></li>
+                                <li class="flex items-start"><i class="fas fa-certificate text-amber-600 mt-1 mr-3"></i><span><strong>Certification :</strong> Formation certifiante</span></li>
+                                <li class="flex items-start"><i class="fas fa-tag text-amber-600 mt-1 mr-3"></i><span><strong>Tarif :</strong> 40 000 FCFA</span></li>
                             </ul>
-                            <br>
-                            <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" class="btn-primary mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg text-center">S'inscrire </a>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20Power%20BI" target="_blank" rel="noopener" class="btn-primary mt-6 w-full inline-block bg-amber-500 hover:bg-amber-600 text-white font-medium py-3 px-6 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire sur WhatsApp</a>
+                            <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" target="_blank" rel="noopener" class="mt-3 w-full inline-block border border-amber-500 text-amber-700 hover:bg-amber-50 font-medium py-3 px-6 rounded-lg text-center">Formulaire d'inscription</a>
+                            <a href="https://forms.gle/XakKqMp2mL4qGKbV8" target="_blank" rel="noopener" class="block text-center text-sm text-amber-700 hover:underline mt-3">Participer à un webinaire gratuit →</a>
                         </div>
                     </div>
                     <div class="md:w-2/3">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-6">PowerBI - Data Visualisation</h2>
-                        <p class="text-lg text-gray-600 mb-6">Maîtrisez PowerBI pour transformer vos données en tableaux de bord interactifs et percutants. Apprenez à connecter, modéliser et visualiser des données provenant de multiples sources.</p>
-                        
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Formation Power BI</h2>
+                        <p class="text-lg text-gray-600 mb-6">Transformez vos données en décisions grâce à des tableaux de bord interactifs et percutants.</p>
+
                         <div class="mb-8">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Ce que vous apprendrez</h3>
-                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Installation et interface de PowerBI</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Connexion aux sources de données</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Transformation des données avec Power Query</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Création de modèles de données</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>DAX (Data Analysis Expressions)</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                    <span>Visualisations avancées et interactives</span>
-                                </li>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">À la fin de la formation, vous serez capable de :</h3>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Importer, nettoyer et transformer vos données</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Créer des modèles de données performants</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Concevoir des tableaux de bord interactifs et professionnels</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Utiliser DAX pour des analyses avancées</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Publier et partager vos rapports en toute sécurité</span></li>
                             </ul>
                         </div>
-                        
+
                         <div class="mb-8">
                             <h3 class="text-xl font-bold text-gray-800 mb-4">Programme de la formation</h3>
                             <div class="space-y-4">
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 1 : Introduction à PowerBI</h4>
-                                    <p class="text-gray-600">Installation, interface, connexion aux premières sources de données</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 1 : Découverte de Power BI et import des données</h4>
+                                    <p class="text-gray-600">Prise en main de l'interface et connexion/importation des données depuis différentes sources (Excel, CSV, bases de données).</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 2 : Transformation des données</h4>
-                                    <p class="text-gray-600">Power Query, nettoyage, mise en forme, combinaison de sources</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 2 : Nettoyage et transformation (Power Query)</h4>
+                                    <p class="text-gray-600">Nettoyer, transformer et préparer des données fiables pour l'analyse.</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 3 : Modélisation des données</h4>
-                                    <p class="text-gray-600">Relations entre tables, création de mesures avec DAX</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 3 : Modélisation des données</h4>
+                                    <p class="text-gray-600">Créer des relations et des modèles de données performants.</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 4 : Visualisation</h4>
-                                    <p class="text-gray-600">Création de rapports, interactions entre visuels, mise en page</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 4 : Analyses avancées avec DAX</h4>
+                                    <p class="text-gray-600">Mesures et colonnes calculées, fonctions DAX pour des analyses puissantes.</p>
                                 </div>
                                 <div class="program-step">
-                                    <h4 class="font-semibold text-gray-800">Semaine 5 : Publication et partage</h4>
-                                    <p class="text-gray-600">PowerBI Service, partage sécurisé, actualisation des données</p>
+                                    <h4 class="font-semibold text-gray-800">Séance 5 : Tableaux de bord et partage</h4>
+                                    <p class="text-gray-600">Concevoir des tableaux de bord interactifs, publier et partager vos rapports en toute sécurité.</p>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div>
                             <h3 class="text-xl font-bold text-gray-800 mb-4">À qui s'adresse cette formation ?</h3>
-                            <p class="text-gray-600 mb-4">Cette formation est idéale pour :</p>
-                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <li class="flex items-start">
-                                    <i class="fas fa-chart-pie text-green-600 mt-1 mr-2"></i>
-                                    <span>Analystes de données et BI</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-user-tie text-green-600 mt-1 mr-2"></i>
-                                    <span>Managers et décideurs</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-database text-green-600 mt-1 mr-2"></i>
-                                    <span>Professionnels travaillant avec des données</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-graduation-cap text-green-600 mt-1 mr-2"></i>
-                                    <span>Étudiants en gestion ou analyse de données</span>
-                                </li>
-                            </ul>
+                            <p class="text-gray-600">Débutants, étudiants, ingénieurs et techniciens souhaitant visualiser, analyser et décider efficacement.</p>
                         </div>
                     </div>
                 </div>
@@ -1182,384 +1073,412 @@ const form = document.getElementById('contact-form');
     <!-- Java Modal -->
     <div id="java-modal" class="modal">
         <div class="modal-content relative">
-          <span class="close-btn" onclick="closeModal('java-modal')">&times;</span>
-          <div class="p-8">
-            <div class="flex flex-col md:flex-row gap-8">
-              <!-- Colonne gauche -->
-              <div class="md:w-1/3">
-                <div class="bg-red-100 p-8 rounded-lg flex justify-center mb-6">
-                  <i class="fas fa-code text-red-600 text-8xl"></i>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                  <h3 class="text-xl font-bold text-gray-800 mb-4">Informations clés</h3>
-                  <ul class="space-y-3">
-                    <li class="flex items-start">
-                      <i class="fas fa-clock text-red-600 mt-1 mr-3"></i>
-                      <span><strong>Durée:</strong> 60 heures (6 semaines)</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-user-graduate text-red-600 mt-1 mr-3"></i>
-                      <span><strong>Niveau:</strong> Débutant à Intermédiaire</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-laptop text-red-600 mt-1 mr-3"></i>
-                      <span><strong>Format:</strong> 100% en ligne</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-certificate text-red-600 mt-1 mr-3"></i>
-                      <span><strong>Certification:</strong> Oui, avec projet final</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-money-bill-wave text-red-600 mt-1 mr-3"></i>
-                      <span><strong>Prix:</strong> 180 000 FCFA</span>
-                    </li>
-                  </ul>
-                  <br>
-                  <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" class="btn-primary mt-6 w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg text-center">S'inscrire</a>
-                </div>
-              </div>
-      
-              <!-- Colonne droite -->
-              <div class="md:w-2/3">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Java - Développement Orienté Objet</h2>
-                <p class="text-lg text-gray-600 mb-6">
-                  Apprenez Java, l’un des langages de programmation les plus utilisés dans le monde pour les applications backend, Android, et les logiciels d’entreprise.
-                </p>
-      
-                <div class="mb-8">
-                  <h3 class="text-xl font-bold text-gray-800 mb-4">Ce que vous apprendrez</h3>
-                  <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <li class="flex items-start">
-                      <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
-                      <span>Syntaxe de base de Java</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
-                      <span>Programmation Orientée Objet (POO)</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
-                      <span>Collections, tableaux et boucles</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
-                      <span>Gestion des erreurs et exceptions</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
-                      <span>Fichiers, entrées/sorties et serialization</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-check-circle text-red-500 mt-1 mr-2"></i>
-                      <span>Création de projets Java avec Eclipse ou IntelliJ</span>
-                    </li>
-                  </ul>
-                </div>
-      
-                <div class="mb-8">
-                  <h3 class="text-xl font-bold text-gray-800 mb-4">Programme de la formation</h3>
-                  <div class="space-y-4">
-                    <div class="program-step">
-                      <h4 class="font-semibold text-gray-800">Semaine 1 : Introduction à Java</h4>
-                      <p class="text-gray-600">Installation de l’environnement, syntaxe de base</p>
-                    </div>
-                    <div class="program-step">
-                      <h4 class="font-semibold text-gray-800">Semaine 2 : Programmation Orientée Objet</h4>
-                      <p class="text-gray-600">Classes, objets, héritage, encapsulation, polymorphisme</p>
-                    </div>
-                    <div class="program-step">
-                      <h4 class="font-semibold text-gray-800">Semaine 3 : Collections et tableaux</h4>
-                      <p class="text-gray-600">ArrayList, HashMap, Set, itérations</p>
-                    </div>
-                    <div class="program-step">
-                      <h4 class="font-semibold text-gray-800">Semaine 4 : Gestion des erreurs</h4>
-                      <p class="text-gray-600">Try-catch, exceptions personnalisées</p>
-                    </div>
-                    <div class="program-step">
-                      <h4 class="font-semibold text-gray-800">Semaine 5 : Manipulation de fichiers</h4>
-                      <p class="text-gray-600">Lecture/écriture, flux, fichiers texte</p>
-                    </div>
-                    <div class="program-step">
-                      <h4 class="font-semibold text-gray-800">Semaine 6 : Projet final</h4>
-                      <p class="text-gray-600">Mise en pratique dans un mini-projet complet</p>
-                    </div>
-                  </div>
-                </div>
-      
-                <div>
-                  <h3 class="text-xl font-bold text-gray-800 mb-4">À qui s'adresse cette formation ?</h3>
-                  <p class="text-gray-600 mb-4">Cette formation est idéale pour :</p>
-                  <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <li class="flex items-start">
-                      <i class="fas fa-laptop-code text-red-600 mt-1 mr-2"></i>
-                      <span>Débutants en programmation</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-user-tie text-red-600 mt-1 mr-2"></i>
-                      <span>Développeurs souhaitant apprendre Java</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-building text-red-600 mt-1 mr-2"></i>
-                      <span>Professionnels IT</span>
-                    </li>
-                    <li class="flex items-start">
-                      <i class="fas fa-graduation-cap text-red-600 mt-1 mr-2"></i>
-                      <span>Étudiants en informatique</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-
-      <button onclick="openModal('autocad-modal')" class="btn-primary border border-yellow-600 text-yellow-600 hover:bg-yellow-50 font-medium py-2 px-4 rounded-lg text-center">Formation complète</button>
-
-<div id="autocad-modal" class="modal">
-    <div class="modal-content relative">
-        <span class="close-btn" onclick="closeModal('autocad-modal')">&times;</span>
-        <div class="p-8">
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-1/3">
-                    <div class="bg-yellow-100 p-8 rounded-lg flex justify-center mb-6">
-                        <i class="fas fa-drafting-compass text-yellow-600 text-8xl"></i>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Informations clés</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-clock text-yellow-600 mt-1 mr-3"></i>
-                                <span><strong>Durée:</strong> 40 heures (4 semaines)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-user-graduate text-yellow-600 mt-1 mr-3"></i>
-                                <span><strong>Niveau:</strong> Débutant à intermédiaire</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-laptop text-yellow-600 mt-1 mr-3"></i>
-                                <span><strong>Format:</strong> 100% en ligne</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-certificate text-yellow-600 mt-1 mr-3"></i>
-                                <span><strong>Certification:</strong> Oui, avec projet final</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-money-bill-wave text-yellow-600 mt-1 mr-3"></i>
-                                <span><strong>Prix:</strong> 150 000 FCFA</span>
-                            </li>
-                        </ul>
-                        <br>
-                        <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" class="btn-primary mt-6 w-full bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-3 px-6 rounded-lg text-center">S'inscrire</a>
-                    </div>
-                </div>
-                <div class="md:w-2/3">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">AutoCAD - Conception assistée par ordinateur</h2>
-                    <p class="text-lg text-gray-600 mb-6">Apprenez à maîtriser AutoCAD pour réaliser des plans techniques professionnels. Idéal pour les architectes, ingénieurs, designers ou toute personne souhaitant se lancer dans la CAO.</p>
-                    
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Ce que vous apprendrez</h3>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i>
-                                <span>Prise en main de l'interface AutoCAD</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i>
-                                <span>Création et modification d’objets 2D</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i>
-                                <span>Gestion des calques et des blocs</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i>
-                                <span>Cotation et annotations</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i>
-                                <span>Impression et mise en page</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-yellow-500 mt-1 mr-2"></i>
-                                <span>Introduction à la 3D</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Programme de la formation</h3>
-                        <div class="space-y-4">
-                            <div class="program-step">
-                                <h4 class="font-semibold text-gray-800">Semaine 1 : Introduction à AutoCAD</h4>
-                                <p class="text-gray-600">Découverte de l'interface, outils de base, navigation</p>
-                            </div>
-                            <div class="program-step">
-                                <h4 class="font-semibold text-gray-800">Semaine 2 : Dessin et modification</h4>
-                                <p class="text-gray-600">Lignes, cercles, arcs, polylignes, outils de modification</p>
-                            </div>
-                            <div class="program-step">
-                                <h4 class="font-semibold text-gray-800">Semaine 3 : Organisation du dessin</h4>
-                                <p class="text-gray-600">Calques, blocs, styles de texte et cotation</p>
-                            </div>
-                            <div class="program-step">
-                                <h4 class="font-semibold text-gray-800">Semaine 4 : Impression et 3D</h4>
-                                <p class="text-gray-600">Mise en page, impressions, introduction aux objets 3D</p>
-                            </div>
+            <span class="close-btn" onclick="closeModal('java-modal')">&times;</span>
+            <div class="p-8">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div class="bg-red-100 p-8 rounded-lg flex justify-center mb-6">
+                            <i class="fab fa-java text-red-600 text-8xl"></i>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Informations clés</h3>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-calendar-day text-red-600 mt-1 mr-3"></i><span><strong>Début :</strong> <span class="js-session-date">Samedi 04 juillet 2026</span></span></li>
+                                <li class="flex items-start"><i class="fas fa-clock text-red-600 mt-1 mr-3"></i><span><strong>Durée :</strong> 5 semaines · 5 séances de 2h</span></li>
+                                <li class="flex items-start"><i class="fas fa-laptop-house text-red-600 mt-1 mr-3"></i><span><strong>Format :</strong> Présentiel & 100% à distance</span></li>
+                                <li class="flex items-start"><i class="fas fa-map-marker-alt text-red-600 mt-1 mr-3"></i><span><strong>Lieu :</strong> Missabougou, Bamako</span></li>
+                                <li class="flex items-start"><i class="fas fa-users text-red-600 mt-1 mr-3"></i><span><strong>Places :</strong> 12 maximum</span></li>
+                                <li class="flex items-start"><i class="fas fa-certificate text-red-600 mt-1 mr-3"></i><span><strong>Certification :</strong> Formation certifiante</span></li>
+                                <li class="flex items-start"><i class="fas fa-tag text-red-600 mt-1 mr-3"></i><span><strong>Tarif :</strong> 40 000 FCFA</span></li>
+                            </ul>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20Java%20POO" target="_blank" rel="noopener" class="btn-primary mt-6 w-full inline-block bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire sur WhatsApp</a>
+                            <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" target="_blank" rel="noopener" class="mt-3 w-full inline-block border border-red-600 text-red-700 hover:bg-red-50 font-medium py-3 px-6 rounded-lg text-center">Formulaire d'inscription</a>
                         </div>
                     </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">À qui s'adresse cette formation ?</h3>
-                        <p class="text-gray-600 mb-4">Cette formation est idéale pour :</p>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-building text-yellow-600 mt-1 mr-2"></i>
-                                <span>Architectes et étudiants en architecture</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-cogs text-yellow-600 mt-1 mr-2"></i>
-                                <span>Ingénieurs et techniciens</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-pencil-ruler text-yellow-600 mt-1 mr-2"></i>
-                                <span>Designers industriels</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-users text-yellow-600 mt-1 mr-2"></i>
-                                <span>Débutants souhaitant découvrir la CAO</span>
-                            </li>
-                        </ul>
+                    <div class="md:w-2/3">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Formation Java — Programmation Orientée Objet</h2>
+                        <p class="text-lg text-gray-600 mb-6">Apprenez Java et la POO, des fondamentaux jusqu'au développement d'une application complète de bout en bout.</p>
+
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">À la fin de la formation, vous serez capable de :</h3>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Maîtriser la syntaxe, les types, conditions et boucles</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Créer des classes (attributs, méthodes, encapsulation)</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Appliquer héritage, polymorphisme et abstraction</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Gérer les exceptions et les collections (List, Set, Map)</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Développer une application Java complète</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Programme de la formation</h3>
+                            <div class="space-y-4">
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 1 : Bases de Java et concepts fondamentaux de la POO</h4>
+                                    <p class="text-gray-600">Environnement Java (JDK, IDE) et structure d'un programme, syntaxe de base, types, conditions et boucles, classes (attributs, méthodes, constructeurs, encapsulation). TP : création de classes et d'objets.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 2 : Héritage, polymorphisme et abstraction</h4>
+                                    <p class="text-gray-600">Héritage et réutilisation du code, polymorphisme et redéfinition de méthodes, classes abstraites et interfaces. TP : héritage et interfaces.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 3 : Gestion des exceptions et collections Java</h4>
+                                    <p class="text-gray-600">Gérer les erreurs (try, catch, finally), exceptions personnalisées, collections Java (List, Set, Map). TP : collections et gestion d'erreurs.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 4 : Atelier pratique intensif – Préparation au mini-projet</h4>
+                                    <p class="text-gray-600">Interactions entre objets (associations simples), cas pratiques proches d'applications réelles, bonnes pratiques et techniques de débogage.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 5 : Mini-projet – Application Java complète</h4>
+                                    <p class="text-gray-600">Analyser et concevoir une application complète, mettre en pratique la POO (héritage, polymorphisme, collections, exceptions) et développer un projet structuré de bout en bout.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">À qui s'adresse cette formation ?</h3>
+                            <p class="text-gray-600">Débutants, étudiants, ingénieurs et techniciens souhaitant apprendre la programmation orientée objet.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<button onclick="openModal('arcgis-modal')" class="btn-primary border border-indigo-600 text-indigo-600 hover:bg-indigo-50 font-medium py-2 px-4 rounded-lg text-center">Formation complète</button>
-
-<div id="arcgis-modal" class="modal">
-    <div class="modal-content relative">
-        <span class="close-btn" onclick="closeModal('arcgis-modal')">&times;</span>
-        <div class="p-8">
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-1/3">
-                    <div class="bg-indigo-100 p-8 rounded-lg flex justify-center mb-6">
-                        <i class="fas fa-map-marked-alt text-indigo-600 text-8xl"></i>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Informations clés</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-clock text-indigo-600 mt-1 mr-3"></i>
-                                <span><strong>Durée:</strong> 40 heures (4 semaines)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-user-graduate text-indigo-600 mt-1 mr-3"></i>
-                                <span><strong>Niveau:</strong> Débutant à avancé</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-laptop text-indigo-600 mt-1 mr-3"></i>
-                                <span><strong>Format:</strong> 100% en ligne</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-certificate text-indigo-600 mt-1 mr-3"></i>
-                                <span><strong>Certification:</strong> Oui, avec projet SIG final</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-money-bill-wave text-indigo-600 mt-1 mr-3"></i>
-                                <span><strong>Prix:</strong> 150 000 FCFA</span>
-                            </li>
-                        </ul>
-                        <br>
-                        <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" class="btn-primary mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg text-center">S'inscrire</a>
-                    </div>
-                </div>
-                <div class="md:w-2/3">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">ArcGIS - Systèmes d’Information Géographique</h2>
-                    <p class="text-lg text-gray-600 mb-6">Maîtrisez les fondamentaux des SIG avec ArcGIS : gestion, analyse et visualisation des données géospatiales pour prendre de meilleures décisions.</p>
-                    
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Ce que vous apprendrez</h3>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
-                                <span>Introduction aux SIG et concepts clés</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
-                                <span>Utilisation de ArcMap et ArcGIS Pro</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
-                                <span>Création et gestion de couches cartographiques</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
-                                <span>Analyse spatiale et requêtes géographiques</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
-                                <span>Symbolisation et mise en page de cartes</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-indigo-500 mt-1 mr-2"></i>
-                                <span>Exportation et partage de cartes interactives</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Programme de la formation</h3>
-                        <div class="space-y-4">
-                            <div class="program-step">
-                                <h4 class="font-semibold text-gray-800">Semaine 1 : Bases des SIG</h4>
-                                <p class="text-gray-600">Concepts clés, introduction à ArcGIS, création de projets</p>
-                            </div>
-                            <div class="program-step">
-                                <h4 class="font-semibold text-gray-800">Semaine 2 : Données et cartes</h4>
-                                <p class="text-gray-600">Importation de données, couches, symbologie, étiquetage</p>
-                            </div>
-                            <div class="program-step">
-                                <h4 class="font-semibold text-gray-800">Semaine 3 : Analyse spatiale</h4>
-                                <p class="text-gray-600">Outils d'analyse, géotraitement, requêtes spatiales</p>
-                            </div>
-                            <div class="program-step">
-                                <h4 class="font-semibold text-gray-800">Semaine 4 : Production cartographique</h4>
-                                <p class="text-gray-600">Mise en page, impression, export et publication en ligne</p>
-                            </div>
+    <!-- AutoCAD Modal -->
+    <div id="autocad-modal" class="modal">
+        <div class="modal-content relative">
+            <span class="close-btn" onclick="closeModal('autocad-modal')">&times;</span>
+            <div class="p-8">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div class="bg-blue-100 p-8 rounded-lg flex justify-center mb-6">
+                            <i class="fas fa-drafting-compass text-blue-600 text-8xl"></i>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Informations clés</h3>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-calendar-day text-blue-600 mt-1 mr-3"></i><span><strong>Début :</strong> <span class="js-session-date">Samedi 04 juillet 2026</span></span></li>
+                                <li class="flex items-start"><i class="fas fa-clock text-blue-600 mt-1 mr-3"></i><span><strong>Durée :</strong> 5 semaines · 5 séances de 2h</span></li>
+                                <li class="flex items-start"><i class="fas fa-laptop-house text-blue-600 mt-1 mr-3"></i><span><strong>Format :</strong> Présentiel & 100% à distance</span></li>
+                                <li class="flex items-start"><i class="fas fa-map-marker-alt text-blue-600 mt-1 mr-3"></i><span><strong>Lieu :</strong> Missabougou, Bamako</span></li>
+                                <li class="flex items-start"><i class="fas fa-users text-blue-600 mt-1 mr-3"></i><span><strong>Places :</strong> 12 maximum</span></li>
+                                <li class="flex items-start"><i class="fas fa-certificate text-blue-600 mt-1 mr-3"></i><span><strong>Certification :</strong> Formation certifiante</span></li>
+                                <li class="flex items-start"><i class="fas fa-tag text-blue-600 mt-1 mr-3"></i><span><strong>Tarif :</strong> 40 000 FCFA</span></li>
+                            </ul>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20AutoCAD" target="_blank" rel="noopener" class="btn-primary mt-6 w-full inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire sur WhatsApp</a>
+                            <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" target="_blank" rel="noopener" class="mt-3 w-full inline-block border border-blue-600 text-blue-700 hover:bg-blue-50 font-medium py-3 px-6 rounded-lg text-center">Formulaire d'inscription</a>
+                            <a href="https://forms.gle/YeE9bZc6UrACARDL9" target="_blank" rel="noopener" class="block text-center text-sm text-blue-700 hover:underline mt-3">Participer à un webinaire gratuit →</a>
                         </div>
                     </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">À qui s'adresse cette formation ?</h3>
-                        <p class="text-gray-600 mb-4">Cette formation est idéale pour :</p>
-                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-globe-africa text-indigo-600 mt-1 mr-2"></i>
-                                <span>Urbanistes et géographes</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-seedling text-indigo-600 mt-1 mr-2"></i>
-                                <span>Spécialistes en environnement</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-building text-indigo-600 mt-1 mr-2"></i>
-                                <span>Aménageurs du territoire</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-user text-indigo-600 mt-1 mr-2"></i>
-                                <span>Débutants intéressés par la cartographie</span>
-                            </li>
-                        </ul>
+                    <div class="md:w-2/3">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Formation AutoCAD</h2>
+                        <p class="text-lg text-gray-600 mb-6">Apprenez à concevoir et réaliser des dessins techniques 2D et 3D précis et professionnels avec AutoCAD.</p>
+
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">À la fin de la formation, vous serez capable de :</h3>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Maîtriser l'interface et les outils essentiels d'AutoCAD</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Réaliser des dessins techniques 2D précis</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Modéliser et visualiser des objets en 3D</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Gérer les calques, cotations, annotations et impressions</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Produire des plans professionnels exploitables</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Programme de la formation</h3>
+                            <div class="space-y-4">
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 1 : Prise en main d'AutoCAD et outils fondamentaux</h4>
+                                    <p class="text-gray-600">Interface et paramétrage de l'espace de travail, outils de dessin 2D (ligne, cercle, polyligne…), outils de modification, introduction aux blocs et à leur gestion.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 2 : Pratiques et consolidation des bases</h4>
+                                    <p class="text-gray-600">Exercices guidés de dessin technique, outils de modification avancés, organisation des calques (layers) / cotation / annotations, bonnes pratiques pour un dessin précis.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 3 : Dessiner un plan architectural</h4>
+                                    <p class="text-gray-600">Création d'un plan architectural simple, outils avancés de dessin, gestion des dimensions et proportions, organisation et structuration d'un projet.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 4 : Plans techniques – fondations et coffrage</h4>
+                                    <p class="text-gray-600">Réalisation d'un plan de fondation, dessin d'un plan de coffrage, organisation des éléments structurels, bonnes pratiques pour les plans techniques.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 5 : Coupes et façades d'un bâtiment</h4>
+                                    <p class="text-gray-600">Réalisation de coupes architecturales, dessin des façades, ajout de cotations et annotations techniques, préparation d'un plan professionnel.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">À qui s'adresse cette formation ?</h3>
+                            <p class="text-gray-600">Débutants, étudiants, ingénieurs et techniciens (architecture, BTP, génie civil…).</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    <!-- ArcGIS Modal -->
+    <div id="arcgis-modal" class="modal">
+        <div class="modal-content relative">
+            <span class="close-btn" onclick="closeModal('arcgis-modal')">&times;</span>
+            <div class="p-8">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div class="bg-indigo-100 p-8 rounded-lg flex justify-center mb-6">
+                            <i class="fas fa-map-marked-alt text-indigo-600 text-8xl"></i>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Informations clés</h3>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-calendar-day text-indigo-600 mt-1 mr-3"></i><span><strong>Début :</strong> <span class="js-session-date">Samedi 04 juillet 2026</span></span></li>
+                                <li class="flex items-start"><i class="fas fa-clock text-indigo-600 mt-1 mr-3"></i><span><strong>Durée :</strong> 5 semaines · 5 séances de 2h</span></li>
+                                <li class="flex items-start"><i class="fas fa-laptop-house text-indigo-600 mt-1 mr-3"></i><span><strong>Format :</strong> Présentiel & 100% à distance</span></li>
+                                <li class="flex items-start"><i class="fas fa-map-marker-alt text-indigo-600 mt-1 mr-3"></i><span><strong>Lieu :</strong> Missabougou, Bamako</span></li>
+                                <li class="flex items-start"><i class="fas fa-users text-indigo-600 mt-1 mr-3"></i><span><strong>Places :</strong> 12 maximum</span></li>
+                                <li class="flex items-start"><i class="fas fa-certificate text-indigo-600 mt-1 mr-3"></i><span><strong>Certification :</strong> Formation certifiante</span></li>
+                                <li class="flex items-start"><i class="fas fa-tag text-indigo-600 mt-1 mr-3"></i><span><strong>Tarif :</strong> 40 000 FCFA</span></li>
+                            </ul>
+                            <a href="https://wa.me/22376547591?text=Bonjour%20NumeriLab%20je%20souhaite%20m%20inscrire%20a%20la%20formation%20ArcGIS" target="_blank" rel="noopener" class="btn-primary mt-6 w-full inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg text-center"><i class="fab fa-whatsapp mr-2"></i>S'inscrire sur WhatsApp</a>
+                            <a href="https://forms.gle/UN2yQq9qQLZfVHVy8" target="_blank" rel="noopener" class="mt-3 w-full inline-block border border-indigo-600 text-indigo-700 hover:bg-indigo-50 font-medium py-3 px-6 rounded-lg text-center">Formulaire d'inscription</a>
+                            <a href="https://forms.gle/GrtTtB7vUJy7Mznr7" target="_blank" rel="noopener" class="block text-center text-sm text-indigo-700 hover:underline mt-3">Participer à un webinaire gratuit →</a>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Formation ArcGIS</h2>
+                        <p class="text-lg text-gray-600 mb-6">Cartographie, analyse spatiale et SIG pour des décisions éclairées : gérez, analysez et visualisez vos données géospatiales.</p>
 
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">À la fin de la formation, vous serez capable de :</h3>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Comprendre les SIG et leurs domaines d'application</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Manipuler les données spatiales (vecteur & raster)</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Créer, éditer et analyser des cartes</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Délimiter un bassin versant et analyser l'hydrologie</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Réaliser des traitements géographiques avancés</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Mettre en page et exporter des cartes professionnelles</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Programme de la formation</h3>
+                            <div class="space-y-4">
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 1 : Généralités sur les SIG</h4>
+                                    <p class="text-gray-600">Qu'est-ce qu'un SIG et ses domaines d'application, types de données géographiques (raster, vecteur), prise en main de l'interface ArcGIS, import et visualisation des premières données spatiales.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 2 : Des coordonnées projetées à la carte d'occupation du sol</h4>
+                                    <p class="text-gray-600">Convertir des coordonnées géographiques en coordonnées projetées, manipuler des couches spatiales (ajout, stylisation, symbologie), classification simple pour l'occupation du sol.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 3 : Délimitation du bassin versant</h4>
+                                    <p class="text-gray-600">Identifier les points exutoires et zones d'accumulation, exécuter les outils hydrologiques pour délimiter un bassin versant, produire une carte thématique hydrologique.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 4 : Analyse spatiale et traitements géographiques</h4>
+                                    <p class="text-gray-600">Principaux outils d'analyse spatiale, opérations de superposition de couches (overlay), zones tampons (buffer) et analyse d'impact.</p>
+                                </div>
+                                <div class="program-step">
+                                    <h4 class="font-semibold text-gray-800">Séance 5 : Mise en page et création de cartes professionnelles</h4>
+                                    <p class="text-gray-600">Mise en page cartographique (titre, échelle, légende, nord…), éléments de communication (logos, textes, annotations), export sous différents formats (PDF, image haute résolution).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">À qui s'adresse cette formation ?</h3>
+                            <p class="text-gray-600">Débutants, étudiants, ingénieurs et techniciens (géographie, environnement, aménagement du territoire…).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script>
+        // Menu mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('.mobile-link').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Accordéon FAQ
+        document.querySelectorAll('.faq-question').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const answer = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                answer.classList.toggle('open');
+                if (icon) icon.classList.toggle('fa-chevron-up');
+            });
+        });
+
+        // Modals
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Fermer un modal en cliquant en dehors du contenu
+        window.addEventListener('click', function (event) {
+            document.querySelectorAll('.modal').forEach(function (modal) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Fermer un modal avec la touche Échap
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(function (modal) {
+                    modal.style.display = 'none';
+                });
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Formulaire de contact (réponse dans l'iframe cachée)
+        const form = document.getElementById('contact-form');
+        const alertBox = document.getElementById('form-alert');
+        const iframe = document.querySelector('iframe[name="hidden_iframe"]');
+        let formSubmitted = false;
+
+        if (form) {
+            form.addEventListener('submit', function () { formSubmitted = true; });
+        }
+
+        if (iframe) {
+            iframe.onload = function () {
+                if (!formSubmitted) return;
+                if (alertBox) {
+                    alertBox.classList.remove('hidden');
+                    alertBox.style.backgroundColor = '#dcfce7';
+                    alertBox.style.color = '#166534';
+                    alertBox.textContent = 'Merci, votre message a bien été envoyé !';
+                }
+                if (form) form.reset();
+                formSubmitted = false;
+            };
+        }
+
+        // ====== Contenu dynamique via Google Sheets (sans redéploiement) ======
+        // Étapes (à faire une seule fois) :
+        // 1) Crée un Google Sheet avec 2 onglets nommés EXACTEMENT "session" et "temoignages".
+        //    • onglet "session"     : en A1 = date  ; en A2 = la date (ex : Samedi 04 juillet 2026)
+        //    • onglet "temoignages" : ligne 1 = en-têtes  nom | formation | avis | note
+        //                             puis 1 ligne par témoignage (note = chiffre de 1 à 5)
+        // 2) Bouton Partager → "Tous les utilisateurs disposant du lien" → rôle Lecteur.
+        // 3) Copie l'ID du Sheet (dans l'URL, entre /d/ et /edit) et colle-le ci-dessous.
+        const SHEET_ID = "159jNFpZldsIdfMXKfuKHax-4fg2j-VjDGwrJmFV0J7Q"; // ⬅️ vide = valeurs par défaut de la page ; rempli = piloté par le Sheet
+
+        async function fetchSheet(sheetName) {
+            const url = "https://docs.google.com/spreadsheets/d/" + SHEET_ID +
+                "/gviz/tq?tqx=out:json&sheet=" + encodeURIComponent(sheetName) + "&_=" + Date.now();
+            const txt = await (await fetch(url)).text();
+            const json = JSON.parse(txt.substring(txt.indexOf("{"), txt.lastIndexOf("}") + 1));
+            const cols = (json.table.cols || []).map(function (c) { return (c.label || "").trim().toLowerCase(); });
+            return (json.table.rows || []).map(function (r) {
+                const o = { _vals: [] };
+                (r.c || []).forEach(function (cell, i) {
+                    var raw = cell ? ((cell.f !== null && cell.f !== undefined && cell.f !== "") ? cell.f : cell.v) : "";
+                    var val = (raw === null || raw === undefined) ? "" : String(raw).trim();
+                    o[cols[i] || ("col" + i)] = val;
+                    o._vals.push(val);
+                });
+                return o;
+            });
+        }
+
+        function escapeHtml(s) {
+            return String(s == null ? "" : s)
+                .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+        }
+
+        function starsHtml(note) {
+            var n = parseFloat(note);
+            if (isNaN(n) || n <= 0) n = 5;
+            if (n > 5) n = 5;
+            var full = Math.floor(n), half = (n - full) >= 0.5, html = "";
+            for (var i = 0; i < full; i++) html += '<i class="fas fa-star"></i>';
+            if (half) html += '<i class="fas fa-star-half-alt"></i>';
+            for (var j = full + (half ? 1 : 0); j < 5; j++) html += '<i class="far fa-star"></i>';
+            return html;
+        }
+
+        function renderTestimonial(t) {
+            return '<div class="testimonial-card p-8 rounded-xl shadow-sm">' +
+                '<div class="flex items-center mb-4">' +
+                '<div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background:linear-gradient(135deg,#7c3aed,#c2188f)">' +
+                '<i class="fas fa-user text-white"></i></div>' +
+                '<div><h4 class="font-bold text-gray-800">' + escapeHtml(t.nom) + '</h4>' +
+                '<p class="text-sm text-gray-500">' + escapeHtml(t.formation) + '</p></div></div>' +
+                '<p class="text-gray-600 italic mb-4">« ' + escapeHtml(t.avis) + ' »</p>' +
+                '<div class="flex text-amber-400">' + starsHtml(t.note) + '</div></div>';
+        }
+
+        async function loadDynamicContent() {
+            if (!SHEET_ID) return; // non configuré : on garde le contenu écrit dans la page
+            try {
+                var rows = await fetchSheet("session");
+                var skip = ["date", "cle", "clé", "valeur", "value", "session"];
+                var dateVal = "";
+                for (var a = 0; a < rows.length && !dateVal; a++) {
+                    var vals = rows[a]._vals || [];
+                    for (var b = 0; b < vals.length; b++) {
+                        var sv = (vals[b] == null ? "" : String(vals[b])).trim();
+                        if (sv && skip.indexOf(sv.toLowerCase()) === -1) { dateVal = sv; break; }
+                    }
+                }
+                if (dateVal) {
+                    document.querySelectorAll(".js-session-date").forEach(function (el) { el.textContent = dateVal; });
+                }
+            } catch (e) { /* on garde la date par défaut */ }
+            try {
+                var data = await fetchSheet("temoignages");
+                var items = data.map(function (r) {
+                    return {
+                        nom: r.nom !== undefined ? r.nom : r._vals[0],
+                        formation: r.formation !== undefined ? r.formation : r._vals[1],
+                        avis: r.avis !== undefined ? r.avis : r._vals[2],
+                        note: r.note !== undefined ? r.note : r._vals[3]
+                    };
+                }).filter(function (t) {
+                    var nom = (t.nom || "").toString().trim().toLowerCase();
+                    return (t.nom || t.avis) && nom !== "nom";
+                });
+                var grid = document.getElementById("testimonials-grid");
+                if (grid && items.length) { grid.innerHTML = items.map(renderTestimonial).join(""); }
+            } catch (e) { /* on garde les témoignages par défaut */ }
+        }
+        loadDynamicContent();
+    </script>
+</body>
 </html>
